@@ -1,0 +1,197 @@
+{
+  "info": {
+    "_postman_id": "376211bc-bf06-4faf-91b2-2b20191a4498",
+    "name": "LMS - Week 2 Auth APIs",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "53493295",
+    "_collection_link": "https://go.postman.co/collection/53493295-376211bc-bf06-4faf-91b2-2b20191a4498?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "Student Register",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"name\": \"Rahul Kumar\",\r\n  \"email\": \"rahul2@college.edu\",\r\n  \"phone\": \"9876543210\",\r\n  \"password\": \"SecurePass@123\",\r\n  \"branch\": \"CSE\",\r\n  \"enrollmentYear\": 2024\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8080/api/auth/student/register",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "auth",
+            "student",
+            "register"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Faculty Register",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"name\": \"Dr. Sharma\",\r\n  \"email\": \"sharma@college.edu\",\r\n  \"phone\": \"9876543210\",\r\n  \"password\": \"SecurePass@123\",\r\n  \"department\": \"CSE\",\r\n  \"designation\": \"Professor\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8080/api/auth/faculty/register",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "auth",
+            "faculty",
+            "register"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Student Login",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"email\": \"rahul2@college.edu\",\r\n  \"password\": \"SecurePass@123\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8080/api/auth/student/login",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "auth",
+            "student",
+            "login"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Admin Register",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"name\": \"Admin User\",\r\n  \"email\": \"admin@college.edu\",\r\n  \"phone\": \"9876543210\",\r\n  \"password\": \"SecurePass@123\",\r\n  \"role\": \"SuperAdmin\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8080/api/auth/admin/register",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "auth",
+            "admin",
+            "register"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Faculty Login",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"email\": \"sharma@college.edu\",\r\n  \"password\": \"SecurePass@123\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8080/api/auth/faculty/login",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "auth",
+            "faculty",
+            "login"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Admin Login",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"email\": \"admin@college.edu\",\r\n  \"password\": \"SecurePass@123\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8080/api/auth/admin/login",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "auth",
+            "admin",
+            "login"
+          ]
+        }
+      },
+      "response": []
+    }
+  ]
+}
