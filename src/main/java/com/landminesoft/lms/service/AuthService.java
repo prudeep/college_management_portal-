@@ -1,5 +1,6 @@
 package com.landminesoft.lms.service;
 
+import com.landminesoft.lms.config.JwtUtils;
 import com.landminesoft.lms.dto.*;
 import com.landminesoft.lms.entity.*;
 import com.landminesoft.lms.repository.*;
@@ -15,6 +16,7 @@ public class AuthService {
     private final FacultyRepository facultyRepository;
     private final AdminRepository adminRepository;
     private final BCryptPasswordEncoder passwordEncoder;
+    private final JwtUtils jwtUtils;
 
     // ── Student Register ──
     public RegisterResponseDTO registerStudent(StudentRegisterDTO dto) {
@@ -88,17 +90,16 @@ public class AuthService {
                 .build();
     }
 
-    // ── Student Login ──
+   // ── Student Login ── returns JWT now!
     public JwtResponseDTO loginStudent(LoginDTO dto) {
         Student student = studentRepository.findByEmail(dto.getEmail())
                 .orElseThrow(() -> new RuntimeException("Invalid email or password"));
         if (!passwordEncoder.matches(dto.getPassword(), student.getPasswordHash())) {
             throw new RuntimeException("Invalid email or password");
         }
-        // JWT will be added in Week 3 — returning user info for now
+        String token = jwtUtils.generateToken(student.getId(), student.getEmail(), "STUDENT");
         return JwtResponseDTO.builder()
-                .token("JWT_TOKEN_COMING_IN_WEEK_3")
-                .type("Bearer")
+                .token(token)
                 .userId(student.getId())
                 .email(student.getEmail())
                 .name(student.getName())
@@ -106,16 +107,16 @@ public class AuthService {
                 .build();
     }
 
-    // ── Faculty Login ──
+      // ── Faculty Login ── returns JWT now!
     public JwtResponseDTO loginFaculty(LoginDTO dto) {
         FacultyPersonal faculty = facultyRepository.findByEmail(dto.getEmail())
                 .orElseThrow(() -> new RuntimeException("Invalid email or password"));
         if (!passwordEncoder.matches(dto.getPassword(), faculty.getPasswordHash())) {
             throw new RuntimeException("Invalid email or password");
         }
+        String token = jwtUtils.generateToken(faculty.getId(), faculty.getEmail(), "FACULTY");
         return JwtResponseDTO.builder()
-                .token("JWT_TOKEN_COMING_IN_WEEK_3")
-                .type("Bearer")
+                .token(token)
                 .userId(faculty.getId())
                 .email(faculty.getEmail())
                 .name(faculty.getName())
@@ -123,23 +124,24 @@ public class AuthService {
                 .build();
     }
 
-    // ── Admin Login ──
+    // ── Admin Login ── returns JWT now!
     public JwtResponseDTO loginAdmin(LoginDTO dto) {
         Admin admin = adminRepository.findByEmail(dto.getEmail())
                 .orElseThrow(() -> new RuntimeException("Invalid email or password"));
         if (!passwordEncoder.matches(dto.getPassword(), admin.getPasswordHash())) {
             throw new RuntimeException("Invalid email or password");
         }
+        String token = jwtUtils.generateToken(admin.getId(), admin.getEmail(), "ADMIN");
         return JwtResponseDTO.builder()
-                .token("JWT_TOKEN_COMING_IN_WEEK_3")
-                .type("Bearer")
+                .token(token)
                 .userId(admin.getId())
                 .email(admin.getEmail())
                 .name(admin.getName())
                 .role("ADMIN")
                 .build();
     }
-    
+
+
     // ── Roll Number Generator ──
     private String generateRollNumber(String branch, Integer enrollmentYear) {
         long count = studentRepository.countByBranchAndEnrollmentYear(branch, enrollmentYear);

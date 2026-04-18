@@ -2,6 +2,8 @@ package com.landminesoft.lms.controller;
 
 import com.landminesoft.lms.dto.*;
 import com.landminesoft.lms.service.AuthService;
+
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -20,7 +22,8 @@ public class AuthController {
     }
 
     @PostMapping("/student/login")
-    public ResponseEntity<JwtResponseDTO> loginStudent(@RequestBody LoginDTO dto) {
+    public ResponseEntity<JwtResponseDTO> loginStudent(
+            @Valid @RequestBody LoginDTO dto) {
         return ResponseEntity.ok(authService.loginStudent(dto));
     }
 
@@ -31,7 +34,8 @@ public class AuthController {
     }
 
     @PostMapping("/faculty/login")
-    public ResponseEntity<JwtResponseDTO> loginFaculty(@RequestBody LoginDTO dto) {
+    public ResponseEntity<JwtResponseDTO> loginFaculty(
+            @Valid @RequestBody LoginDTO dto) {
         return ResponseEntity.ok(authService.loginFaculty(dto));
     }
 
@@ -42,7 +46,8 @@ public class AuthController {
     }
 
     @PostMapping("/admin/login")
-    public ResponseEntity<JwtResponseDTO> loginAdmin(@RequestBody LoginDTO dto) {
+    public ResponseEntity<JwtResponseDTO> loginAdmin(
+            @Valid @RequestBody LoginDTO dto) {
         return ResponseEntity.ok(authService.loginAdmin(dto));
     }
 }
