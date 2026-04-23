@@ -172,7 +172,7 @@
             "header": [],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n  \"email\": \"rahul@college.edu\",\r\n  \"password\": \"SecurePass@123\"\r\n}",
+              "raw": "{\r\n  \"email\": \"admin@college.edu\",\r\n  \"password\": \"SecurePass@123\"\r\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -180,7 +180,7 @@
               }
             },
             "url": {
-              "raw": "http://localhost:8080/api/auth/student/login",
+              "raw": "http://localhost:8080/api/auth/admin/login",
               "protocol": "http",
               "host": [
                 "localhost"
@@ -189,7 +189,7 @@
               "path": [
                 "api",
                 "auth",
-                "student",
+                "admin",
                 "login"
               ]
             }
@@ -374,6 +374,156 @@
               ]
             },
             "description": "Updates the authenticated student's profile details.\n\nThis endpoint allows a logged-in student to modify personal profile information such as phone number, address, city, and pincode. The request requires a valid bearer token in the Authorization header.\n\nAuthentication:\n\n- Bearer token required\n    \n\nRequest body fields:\n\n- `phone`: Updated phone number\n    \n- `address`: Updated street address\n    \n- `city`: Updated city name\n    \n- `pincode`: Updated postal code\n    \n\nExpected behavior:\n\n- Returns a success response when the profile is updated successfully\n    \n- Returns an error response if the token is missing/invalid or the input data is invalid"
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Week 5 - Error Scenarios",
+      "item": [
+        {
+          "name": "No token",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/api/student/profile",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "student",
+                "profile"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Wrong role - 403",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/api/faculty/students",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "faculty",
+                "students"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Admin reports with admin token - 200",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{admin_token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/api/admin/reports",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "admin",
+                "reports"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Wrong password - 401",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"email\": \"rahul@college.edu\",\r\n  \"password\": \"WrongPass@999\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/auth/student/login",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "auth",
+                "student",
+                "login"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Duplicate email-409",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"name\": \"Rahul Kumar\",\r\n  \"email\": \"rahul@college.edu\",\r\n  \"phone\": \"9876543210\",\r\n  \"password\": \"SecurePass@123\",\r\n  \"branch\": \"CSE\",\r\n  \"enrollmentYear\": 2024\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/auth/student/register",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "auth",
+                "student",
+                "register"
+              ]
+            }
           },
           "response": []
         }

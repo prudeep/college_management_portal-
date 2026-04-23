@@ -3,6 +3,7 @@ package com.landminesoft.lms.service;
 import com.landminesoft.lms.config.JwtUtils;
 import com.landminesoft.lms.dto.*;
 import com.landminesoft.lms.entity.*;
+import com.landminesoft.lms.exception.*;
 import com.landminesoft.lms.repository.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -18,13 +19,10 @@ public class AuthService {
     private final BCryptPasswordEncoder passwordEncoder;
     private final JwtUtils jwtUtils;
 
-    // ── Student Register ──
     public RegisterResponseDTO registerStudent(StudentRegisterDTO dto) {
         if (studentRepository.existsByEmail(dto.getEmail())) {
-            throw new RuntimeException("Email already exists");
+            throw new UserAlreadyExistsException("Student with email already exists: " + dto.getEmail());
         }
-        String rollNumber = generateRollNumber(dto.getBranch(), dto.getEnrollmentYear());
-
         Student student = Student.builder()
                 .name(dto.getName())
                 .email(dto.getEmail())
@@ -32,7 +30,6 @@ public class AuthService {
                 .passwordHash(passwordEncoder.encode(dto.getPassword()))
                 .branch(dto.getBranch())
                 .enrollmentYear(dto.getEnrollmentYear())
-                .rollNumber(rollNumber)
                 .semester(1)
                 .build();
         Student saved = studentRepository.save(student);
@@ -45,10 +42,9 @@ public class AuthService {
                 .build();
     }
 
-    // ── Faculty Register ──
     public RegisterResponseDTO registerFaculty(FacultyRegisterDTO dto) {
         if (facultyRepository.existsByEmail(dto.getEmail())) {
-            throw new RuntimeException("Email already exists");
+            throw new UserAlreadyExistsException("Faculty with email already exists: " + dto.getEmail());
         }
         FacultyPersonal faculty = FacultyPersonal.builder()
                 .name(dto.getName())
@@ -68,10 +64,9 @@ public class AuthService {
                 .build();
     }
 
-    // ── Admin Register ──
     public RegisterResponseDTO registerAdmin(AdminRegisterDTO dto) {
         if (adminRepository.existsByEmail(dto.getEmail())) {
-            throw new RuntimeException("Email already exists");
+            throw new UserAlreadyExistsException("Admin with email already exists: " + dto.getEmail());
         }
         Admin admin = Admin.builder()
                 .name(dto.getName())
@@ -90,12 +85,11 @@ public class AuthService {
                 .build();
     }
 
-   // ── Student Login ── returns JWT now!
     public JwtResponseDTO loginStudent(LoginDTO dto) {
         Student student = studentRepository.findByEmail(dto.getEmail())
-                .orElseThrow(() -> new RuntimeException("Invalid email or password"));
+                .orElseThrow(() -> new InvalidCredentialsException("Invalid email or password"));
         if (!passwordEncoder.matches(dto.getPassword(), student.getPasswordHash())) {
-            throw new RuntimeException("Invalid email or password");
+            throw new InvalidCredentialsException("Invalid email or password");
         }
         String token = jwtUtils.generateToken(student.getId(), student.getEmail(), "STUDENT");
         return JwtResponseDTO.builder()
@@ -107,12 +101,11 @@ public class AuthService {
                 .build();
     }
 
-      // ── Faculty Login ── returns JWT now!
     public JwtResponseDTO loginFaculty(LoginDTO dto) {
         FacultyPersonal faculty = facultyRepository.findByEmail(dto.getEmail())
-                .orElseThrow(() -> new RuntimeException("Invalid email or password"));
+                .orElseThrow(() -> new InvalidCredentialsException("Invalid email or password"));
         if (!passwordEncoder.matches(dto.getPassword(), faculty.getPasswordHash())) {
-            throw new RuntimeException("Invalid email or password");
+            throw new InvalidCredentialsException("Invalid email or password");
         }
         String token = jwtUtils.generateToken(faculty.getId(), faculty.getEmail(), "FACULTY");
         return JwtResponseDTO.builder()
@@ -124,12 +117,11 @@ public class AuthService {
                 .build();
     }
 
-    // ── Admin Login ── returns JWT now!
     public JwtResponseDTO loginAdmin(LoginDTO dto) {
         Admin admin = adminRepository.findByEmail(dto.getEmail())
-                .orElseThrow(() -> new RuntimeException("Invalid email or password"));
+                .orElseThrow(() -> new InvalidCredentialsException("Invalid email or password"));
         if (!passwordEncoder.matches(dto.getPassword(), admin.getPasswordHash())) {
-            throw new RuntimeException("Invalid email or password");
+            throw new InvalidCredentialsException("Invalid email or password");
         }
         String token = jwtUtils.generateToken(admin.getId(), admin.getEmail(), "ADMIN");
         return JwtResponseDTO.builder()
@@ -139,12 +131,5 @@ public class AuthService {
                 .name(admin.getName())
                 .role("ADMIN")
                 .build();
-    }
-
-
-    // ── Roll Number Generator ──
-    private String generateRollNumber(String branch, Integer enrollmentYear) {
-        long count = studentRepository.countByBranchAndEnrollmentYear(branch, enrollmentYear);
-        return branch.toUpperCase() + enrollmentYear + String.format("%03d", count + 1);
     }
 }
