@@ -1,0 +1,383 @@
+{
+  "info": {
+    "_postman_id": "376211bc-bf06-4faf-91b2-2b20191a4498",
+    "name": "LMS - College Portal APIs",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "53493295",
+    "_collection_link": "https://go.postman.co/collection/53493295-376211bc-bf06-4faf-91b2-2b20191a4498?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "Week 2 - Registration & Login",
+      "item": [
+        {
+          "name": "Student Register",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"name\": \"Rahul Kumar\",\r\n  \"email\": \"rahul2@college.edu\",\r\n  \"phone\": \"9876543210\",\r\n  \"password\": \"SecurePass@123\",\r\n  \"branch\": \"CSE\",\r\n  \"enrollmentYear\": 2024\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/auth/student/register",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "auth",
+                "student",
+                "register"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Faculty Register",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"name\": \"Dr. Sharma\",\r\n  \"email\": \"sharma@college.edu\",\r\n  \"phone\": \"9876543210\",\r\n  \"password\": \"SecurePass@123\",\r\n  \"department\": \"CSE\",\r\n  \"designation\": \"Professor\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/auth/faculty/register",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "auth",
+                "faculty",
+                "register"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Admin Register",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"name\": \"Admin User\",\r\n  \"email\": \"admin@college.edu\",\r\n  \"phone\": \"9876543210\",\r\n  \"password\": \"SecurePass@123\",\r\n  \"role\": \"SuperAdmin\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/auth/admin/register",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "auth",
+                "admin",
+                "register"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Student Login",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"email\": \"rahul@college.edu\",\r\n  \"password\": \"NewPass@456\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/auth/student/login",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "auth",
+                "student",
+                "login"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Faculty Login",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"email\": \"sharma@college.edu\",\r\n  \"password\": \"SecurePass@123\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/auth/faculty/login",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "auth",
+                "faculty",
+                "login"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Admin Login",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"email\": \"rahul@college.edu\",\r\n  \"password\": \"SecurePass@123\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/auth/student/login",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "auth",
+                "student",
+                "login"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Week 4 - Password & Profile",
+      "item": [
+        {
+          "name": "Forgot Password",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"email\": \"rahul@college.edu\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/auth/forgot-password",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "auth",
+                "forgot-password"
+              ]
+            },
+            "description": "Triggers the forgot-password flow for a user account.\n\nThis endpoint accepts a registered email address and initiates password reset by generating a reset token or sending reset instructions.\n\nRequest body:\n\n- email: The registered user email address.\n    \n\nExample request:  \n{  \n\"email\": \"[rahul@college.edu](https://mailto:rahul@college.edu)\"  \n}\n\nExpected behavior:\n\n- Returns success if the reset flow is initiated.\n    \n- May return an error if the email is invalid or not registered.\n    \n\nNotes:\n\n- This endpoint should not expose whether an email is registered unless intentionally designed to do so.\n    \n- Commonly used before the Reset Password request."
+          },
+          "response": []
+        },
+        {
+          "name": "Reset Password",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"token\": \"bbb3c82e-3666-42f3-ba3a-71053d76fcac\",\r\n  \"newPassword\": \"NewPass@456\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/auth/reset-password",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "auth",
+                "reset-password"
+              ]
+            },
+            "description": "Resets a user's password using a valid password reset token.\n\nThis endpoint is typically used after a user completes the forgot-password flow and receives a reset token.\n\nRequest body:\n\n- `token` (string): Password reset token issued by the system\n    \n- `newPassword` (string): The new password to set for the account\n    \n\nExpected behavior:\n\n- Returns success when the token is valid and the password is updated\n    \n- Returns an error if the token is invalid, expired, or already used"
+          },
+          "response": []
+        },
+        {
+          "name": "Change Password",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"oldPassword\": \"NewPass@456\",\r\n  \"newPassword\": \"SecurePass@123\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/auth/change-password",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "auth",
+                "change-password"
+              ]
+            },
+            "description": "Changes the password for the currently authenticated user.\n\nThis endpoint requires the user to be logged in and authorized with a valid token. It verifies the user's current password before updating it to a new password.\n\nRequest body:\n\n- `oldPassword` — The user's current password\n    \n- `newPassword` — The new password to set for the account\n    \n\nExpected behavior:\n\n- Returns success when the current password is correct and the new password is accepted\n    \n- Returns an error if the current password is incorrect\n    \n- Returns an error if the new password does not meet password policy requirements\n    \n- Returns an error if the request is unauthenticated or the token is invalid"
+          },
+          "response": []
+        },
+        {
+          "name": "Get Student Profile",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/api/student/profile",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "student",
+                "profile"
+              ]
+            },
+            "description": "Fetches the authenticated student's profile details.\n\nAuthorization:\n\n- Requires a valid Bearer token\n    \n\nEndpoint:\n\n- `GET /api/student/profile`\n    \n\nBase URL:\n\n- `http://localhost:8080`\n    \n\nDescription:  \nThis endpoint returns the profile information of the currently logged-in student. It is intended to be used after successful student login, when a token has been generated and stored in the environment variable.\n\nExpected behavior:\n\n- Returns the student's profile data when the token is valid\n    \n- Returns an unauthorized error if the token is missing or invalid\n    \n\nRequirements:\n\n- The `token` environment variable must contain a valid student access token\n    \n\nExample use case:\n\n1. Log in as a student\n    \n2. Store the returned token\n    \n3. Send this request to retrieve the student's profile information"
+          },
+          "response": []
+        },
+        {
+          "name": "Update Student Profile",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"phone\": \"9999999999\",\r\n  \"address\": \"123 New Street\",\r\n  \"city\": \"Hyderabad\",\r\n  \"pincode\": \"500001\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/student/profile",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "student",
+                "profile"
+              ]
+            },
+            "description": "Updates the authenticated student's profile details.\n\nThis endpoint allows a logged-in student to modify personal profile information such as phone number, address, city, and pincode. The request requires a valid bearer token in the Authorization header.\n\nAuthentication:\n\n- Bearer token required\n    \n\nRequest body fields:\n\n- `phone`: Updated phone number\n    \n- `address`: Updated street address\n    \n- `city`: Updated city name\n    \n- `pincode`: Updated postal code\n    \n\nExpected behavior:\n\n- Returns a success response when the profile is updated successfully\n    \n- Returns an error response if the token is missing/invalid or the input data is invalid"
+          },
+          "response": []
+        }
+      ]
+    }
+  ]
+}
