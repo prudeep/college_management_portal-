@@ -12,26 +12,6 @@
       "item": [
         {
           "name": "Student Register",
-          "event": [
-            {
-              "listen": "test",
-              "script": {
-                "exec": [
-                  "pm.test(\"Status is 200\", function() {\r",
-                  "    pm.response.to.have.status(200);\r",
-                  "});\r",
-                  "pm.test(\"Response has id and role\", function() {\r",
-                  "    var json = pm.response.json();\r",
-                  "    pm.expect(json.role).to.eql(\"STUDENT\");\r",
-                  "    pm.expect(json.message).to.include(\"Registration successful\");\r",
-                  "});"
-                ],
-                "type": "text/javascript",
-                "packages": {},
-                "requests": {}
-              }
-            }
-          ],
           "request": {
             "method": "POST",
             "header": [],
@@ -63,19 +43,6 @@
         },
         {
           "name": "Faculty Register",
-          "event": [
-            {
-              "listen": "test",
-              "script": {
-                "exec": [
-                  ""
-                ],
-                "type": "text/javascript",
-                "packages": {},
-                "requests": {}
-              }
-            }
-          ],
           "request": {
             "method": "POST",
             "header": [],
@@ -138,33 +105,12 @@
         },
         {
           "name": "Student Login",
-          "event": [
-            {
-              "listen": "test",
-              "script": {
-                "exec": [
-                  "pm.test(\"Status is 200\", function() {\r",
-                  "    pm.response.to.have.status(200);\r",
-                  "});\r",
-                  "pm.test(\"Response has JWT token\", function() {\r",
-                  "    var json = pm.response.json();\r",
-                  "    pm.expect(json.token).to.be.a(\"string\");\r",
-                  "    pm.expect(json.role).to.eql(\"STUDENT\");\r",
-                  "    pm.environment.set(\"token\", json.token);\r",
-                  "});"
-                ],
-                "type": "text/javascript",
-                "packages": {},
-                "requests": {}
-              }
-            }
-          ],
           "request": {
             "method": "POST",
             "header": [],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n  \"email\": \"rahul@college.edu\",\r\n  \"password\": \"SecurePass@123\"\r\n}",
+              "raw": "{\r\n  \"email\": \"rahul@college.edu\",\r\n  \"password\": \"NewPass@456\"\r\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -190,27 +136,6 @@
         },
         {
           "name": "Faculty Login",
-          "event": [
-            {
-              "listen": "test",
-              "script": {
-                "exec": [
-                  "pm.test(\"Status is 200\", function() {\r",
-                  "    pm.response.to.have.status(200);\r",
-                  "});\r",
-                  "pm.test(\"Response has JWT token\", function() {\r",
-                  "    var json = pm.response.json();\r",
-                  "    pm.expect(json.token).to.be.a(\"string\");\r",
-                  "    pm.expect(json.role).to.eql(\"FACULTY\");\r",
-                  "    pm.environment.set(\"facultyToken\", json.token);\r",
-                  "});"
-                ],
-                "type": "text/javascript",
-                "packages": {},
-                "requests": {}
-              }
-            }
-          ],
           "request": {
             "method": "POST",
             "header": [],
@@ -242,27 +167,6 @@
         },
         {
           "name": "Admin Login",
-          "event": [
-            {
-              "listen": "test",
-              "script": {
-                "exec": [
-                  "pm.test(\"Status is 200\", function() {\r",
-                  "    pm.response.to.have.status(200);\r",
-                  "});\r",
-                  "pm.test(\"Response has JWT token\", function() {\r",
-                  "    var json = pm.response.json();\r",
-                  "    pm.expect(json.token).to.be.a(\"string\");\r",
-                  "    pm.expect(json.role).to.eql(\"ADMIN\");\r",
-                  "    pm.environment.set(\"adminToken\", json.token);\r",
-                  "});"
-                ],
-                "type": "text/javascript",
-                "packages": {},
-                "requests": {}
-              }
-            }
-          ],
           "request": {
             "method": "POST",
             "header": [],
@@ -299,24 +203,6 @@
       "item": [
         {
           "name": "Forgot Password",
-          "event": [
-            {
-              "listen": "test",
-              "script": {
-                "exec": [
-                  "pm.test(\"Status is 200\", function() {\r",
-                  "    pm.response.to.have.status(200);\r",
-                  "});\r",
-                  "pm.test(\"Response message is correct\", function() {\r",
-                  "    pm.expect(pm.response.text()).to.include(\"reset link sent\");\r",
-                  "});"
-                ],
-                "type": "text/javascript",
-                "packages": {},
-                "requests": {}
-              }
-            }
-          ],
           "request": {
             "method": "POST",
             "header": [],
@@ -348,19 +234,6 @@
         },
         {
           "name": "Reset Password",
-          "event": [
-            {
-              "listen": "test",
-              "script": {
-                "exec": [
-                  ""
-                ],
-                "type": "text/javascript",
-                "packages": {},
-                "requests": {}
-              }
-            }
-          ],
           "request": {
             "method": "POST",
             "header": [],
@@ -392,19 +265,6 @@
         },
         {
           "name": "Change Password",
-          "event": [
-            {
-              "listen": "test",
-              "script": {
-                "exec": [
-                  ""
-                ],
-                "type": "text/javascript",
-                "packages": {},
-                "requests": {}
-              }
-            }
-          ],
           "request": {
             "auth": {
               "type": "bearer",
@@ -446,27 +306,6 @@
         },
         {
           "name": "Get Student Profile",
-          "event": [
-            {
-              "listen": "test",
-              "script": {
-                "exec": [
-                  "pm.test(\"Status is 200\", function() {\r",
-                  "    pm.response.to.have.status(200);\r",
-                  "});\r",
-                  "pm.test(\"Profile has correct fields\", function() {\r",
-                  "    var json = pm.response.json();\r",
-                  "    pm.expect(json.email).to.be.a(\"string\");\r",
-                  "    pm.expect(json.name).to.be.a(\"string\");\r",
-                  "    pm.expect(json).to.not.have.property(\"passwordHash\");\r",
-                  "});"
-                ],
-                "type": "text/javascript",
-                "packages": {},
-                "requests": {}
-              }
-            }
-          ],
           "request": {
             "auth": {
               "type": "bearer",
@@ -499,26 +338,6 @@
         },
         {
           "name": "Update Student Profile",
-          "event": [
-            {
-              "listen": "test",
-              "script": {
-                "exec": [
-                  "pm.test(\"Status is 200\", function() {\r",
-                  "    pm.response.to.have.status(200);\r",
-                  "});\r",
-                  "pm.test(\"Profile updated successfully\", function() {\r",
-                  "    var json = pm.response.json();\r",
-                  "    pm.expect(json.phone).to.be.a(\"string\");\r",
-                  "    pm.expect(json.email).to.be.a(\"string\");\r",
-                  "});"
-                ],
-                "type": "text/javascript",
-                "packages": {},
-                "requests": {}
-              }
-            }
-          ],
           "request": {
             "auth": {
               "type": "bearer",
@@ -565,25 +384,6 @@
       "item": [
         {
           "name": "No token",
-          "event": [
-            {
-              "listen": "test",
-              "script": {
-                "exec": [
-                  "pm.test(\"Status is 401 Unauthorized\", function() {\r",
-                  "    pm.response.to.have.status(401);\r",
-                  "});\r",
-                  "pm.test(\"Error message present\", function() {\r",
-                  "    var json = pm.response.json();\r",
-                  "    pm.expect(json.error).to.eql(\"Unauthorized\");\r",
-                  "});"
-                ],
-                "type": "text/javascript",
-                "packages": {},
-                "requests": {}
-              }
-            }
-          ],
           "request": {
             "method": "GET",
             "header": [],
@@ -605,25 +405,6 @@
         },
         {
           "name": "Wrong role - 403",
-          "event": [
-            {
-              "listen": "test",
-              "script": {
-                "exec": [
-                  "pm.test(\"Status is 403 Forbidden\", function() {\r",
-                  "    pm.response.to.have.status(403);\r",
-                  "});\r",
-                  "pm.test(\"Error message present\", function() {\r",
-                  "    var json = pm.response.json();\r",
-                  "    pm.expect(json.error).to.eql(\"Forbidden\");\r",
-                  "});"
-                ],
-                "type": "text/javascript",
-                "packages": {},
-                "requests": {}
-              }
-            }
-          ],
           "request": {
             "auth": {
               "type": "bearer",
@@ -655,26 +436,6 @@
         },
         {
           "name": "Admin reports with admin token - 200",
-          "event": [
-            {
-              "listen": "test",
-              "script": {
-                "exec": [
-                  "pm.test(\"Status is 200\", function() {\r",
-                  "    pm.response.to.have.status(200);\r",
-                  "});\r",
-                  "pm.test(\"Reports has student and faculty count\", function() {\r",
-                  "    var json = pm.response.json();\r",
-                  "    pm.expect(json).to.have.property(\"totalStudents\");\r",
-                  "    pm.expect(json).to.have.property(\"totalFaculty\");\r",
-                  "});"
-                ],
-                "type": "text/javascript",
-                "packages": {},
-                "requests": {}
-              }
-            }
-          ],
           "request": {
             "auth": {
               "type": "bearer",
@@ -706,25 +467,6 @@
         },
         {
           "name": "Wrong password - 401",
-          "event": [
-            {
-              "listen": "test",
-              "script": {
-                "exec": [
-                  "pm.test(\"Status is 401 Unauthorized\", function() {\r",
-                  "    pm.response.to.have.status(401);\r",
-                  "});\r",
-                  "pm.test(\"Invalid credentials message\", function() {\r",
-                  "    var json = pm.response.json();\r",
-                  "    pm.expect(json.error).to.eql(\"Invalid credentials\");\r",
-                  "});"
-                ],
-                "type": "text/javascript",
-                "packages": {},
-                "requests": {}
-              }
-            }
-          ],
           "request": {
             "method": "POST",
             "header": [],
@@ -756,25 +498,6 @@
         },
         {
           "name": "Duplicate email-409",
-          "event": [
-            {
-              "listen": "test",
-              "script": {
-                "exec": [
-                  "pm.test(\"Status is 409 Conflict\", function() {\r",
-                  "    pm.response.to.have.status(409);\r",
-                  "});\r",
-                  "pm.test(\"Error message present\", function() {\r",
-                  "    var json = pm.response.json();\r",
-                  "    pm.expect(json.error).to.eql(\"User already exists\");\r",
-                  "});"
-                ],
-                "type": "text/javascript",
-                "packages": {},
-                "requests": {}
-              }
-            }
-          ],
           "request": {
             "method": "POST",
             "header": [],
